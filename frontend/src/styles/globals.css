@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0ea5e9;
+  --color-neon-blue: #00f0ff;
+  --color-neon-purple: #b026ff;
+  --color-neon-pink: #ff0080;
+  --color-dark-bg: #111827;
+  --color-dark-card: #1f2937;
+}
+
+* {
+  @apply transition-colors duration-200;
+}
+
+body {
+  @apply bg-dark-900 text-gray-100 font-sans;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-neon rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply opacity-80;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  @apply bg-dark-800 text-gray-100 border border-dark-600 rounded-lg px-4 py-2 focus:outline-none focus:border-neon-blue focus:ring-2 focus:ring-neon-blue focus:ring-opacity-50;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-2 rounded-lg font-medium transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-gradient-neon text-white hover:shadow-neon-blue;
+}
+
+.btn-secondary {
+  @apply bg-dark-700 text-gray-100 border border-dark-600 hover:border-neon-blue;
+}
+
+.btn-outline {
+  @apply border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-900;
+}
+
+/* Cards */
+.card {
+  @apply bg-dark-800 border border-dark-700 rounded-xl p-6 hover:border-neon-blue transition-all duration-300;
+}
+
+.card-hover {
+  @apply hover:shadow-neon-blue hover:shadow-lg;
+}
+
+/* Badges */
+.badge {
+  @apply inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-primary {
+  @apply bg-neon-blue bg-opacity-20 text-neon-blue;
+}
+
+.badge-success {
+  @apply bg-green-500 bg-opacity-20 text-green-400;
+}
+
+.badge-warning {
+  @apply bg-yellow-500 bg-opacity-20 text-yellow-400;
+}
+
+.badge-error {
+  @apply bg-red-500 bg-opacity-20 text-red-400;
+}
+
+/* Loading */
+.skeleton {
+  @apply bg-dark-700 rounded-lg animate-pulse;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
