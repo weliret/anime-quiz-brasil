@@ -1,0 +1,14 @@
+.env
+.env.local
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+.vscode/
+.idea/
+.npm
+.eslintcache
+coverage/
+.git/
+.gitignore

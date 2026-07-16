@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: anime-quiz-mongodb
+    environment:
+      MONGO_INITDB_DATABASE: anime-quiz
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - anime-quiz-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: anime-quiz-redis
+    ports:
+      - '6379:6379'
+    networks:
+      - anime-quiz-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: anime-quiz-backend
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/anime-quiz
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - anime-quiz-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    container_name: anime-quiz-frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    networks:
+      - anime-quiz-network
+
+volumes:
+  mongo_data:
+
+networks:
+  anime-quiz-network:
+    driver: bridge
